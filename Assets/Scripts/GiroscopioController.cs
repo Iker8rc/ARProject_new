@@ -25,4 +25,17 @@ public class GiroscopioController : MonoBehaviour
             cam.rotation = correcionGiro * new Quaternion(inputGyro.x, inputGyro.y, -inputGyro.z, -inputGyro.w);
         }
     }
+    public void Shoot()
+    {
+        Ray ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.transform.CompareTag("Enemy"))
+            {
+                Destroy(hit.transform.gameObject);
+            }
+        }
+    }
 }
